@@ -19,14 +19,24 @@ public class Program {
 		ResultSet rs = st.executeQuery("select * from tb_product");
 			
 		while (rs.next()) {
-			Product p = new Product();
-			p.setId(rs.getLong("id"));
-			p.setDescription(rs.getString("description"));
-			p.setName(rs.getString("name"));
-			p.setImageUri(rs.getString("image_uri"));
-			p.setPrice(rs.getDouble("price"));
+			Product p = instatiateProduct(rs);
+			
+			
+			
+			System.out.println(rs.getLong("Id") + ", " + rs.getString("Name"));
 			
 			System.out.println(p);
-		}
+	}
+	}
+	
+	public static Product instatiateProduct(ResultSet rs) throws SQLException{
+
+		Product p = new Product();
+		p.setId(rs.getLong("id"));
+		p.setDescription(rs.getString("description"));
+		p.setName(rs.getString("name"));
+		p.setImageUri(rs.getString("image_uri"));
+		p.setPrice(rs.getDouble("price"));
+		return p;
 	}
 }
